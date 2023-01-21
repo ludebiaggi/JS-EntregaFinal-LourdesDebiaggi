@@ -32,7 +32,7 @@ let humedad = prompt("Elige la humedad del territorio: Muy baja, Baja, Alta");
 
 while (humedad !== "muy baja" && humedad !== "Muy baja" && humedad !== "baja" && humedad !== "Baja" && humedad !== "alta" && humedad !== "Alta") {
     let produccionPorHectareaAnual;
-    humedad = prompt("Ingresaste un dato inválido. Selecciona la humedad humedad del territorio entre: Muy baja, Baja, Alta");
+    humedad = prompt("Ingresaste un dato inválido. Selecciona la humedad del territorio entre: Muy baja, Baja, Alta");
 }
 
 
@@ -43,7 +43,7 @@ if ((humedad === "muy baja") || (humedad === "Muy baja")) {
 } else if ((humedad === "alta") || (humedad === "Alta")){
     produccionPorHectareaAnual *= 1.25;
 }  else {
-    humedad = prompt("Ingresaste un dato inválido. Selecciona la humedad humedad del territorio entre: Muy baja, Baja, Alta");
+    humedad = prompt("Ingresaste un dato inválido. Selecciona la humedad del territorio entre: Muy baja, Baja, Alta");
 }
 
 //Años cosecha

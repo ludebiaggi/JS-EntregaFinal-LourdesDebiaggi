@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Simulador de Producción Yerba Mate</title>
+</head>
+<body>
+    
+    <h1 class="h1simulador">Simulador de Producción de YERBA MATE</h1>
+    <div class="contenedorFormulario">
+        <form>
+            <label for="hectareas">Ingresa la cantidad de hectáreas a cosechar</label>
+            <input type="number" id="hectareas" name="hectareas" placeholder="El mínimo es 1 hectárea">
+    
+            <label for="densidadPlantacion">Elige la densidad de plantación</label>
+            <input type="text" id="densidadPlantacion" name="densidadPlantacion" placeholder="Baja - Alta - Superplantación">
+    
+            <label for="humedad">Selecciona la humedad del territorio</label>
+            <input type="text" id="humedad" name="humedad" placeholder="Muy baja - Baja - Alta">
+    
+            <label for="tiempo">¿Cuantos años vas a dedicarle a la plantación?</label>
+            <input type="number" id="tiempo" name="tiempo" placeholder="El mínimo son 5 años"> 
+    
+            <button type="submit">Calcular</button>
+        </form>
+
+    </div>
+
+
+    <script src="simulador.js"></script>
+</body>
+</html>

@@ -6,7 +6,7 @@
 // Variables iniciales
 let hectareas = parseInt(prompt ("¿Cuántas hectáreas querés cosechar?" ));
 
-// Densidad
+// Densidad (Aplicación OBJETO + Búsqueda)
 let densidades = {
 baja: 1100,
 alta: 2200,
@@ -21,7 +21,6 @@ densidad = prompt("Ingresaste un dato inválido como densidad, indica si es: Baj
 
 densidad = densidad.toLowerCase();
 
-// Métodos de búsqueda para DENSIDAD
 function buscarValorDensidad(densidad) {
     for (let key in densidades) {
         if (key === densidad) {
@@ -38,17 +37,17 @@ function buscarValorDensidad(densidad) {
     alert("La densidad ingresada no se encuentra en la lista");
     }
 
-// Humedad
-let humedades = {
-"muy baja": 0.4,
-baja: 0.8,
-alta: 1.25
-};
+// Humedad (Aplicación Arrays)
+const humedades = [0.4, 0.8, 1.25];
+const humedadesNombres = ["muy baja", "baja", "alta"];
 
 let humedad = prompt("Elige la humedad del territorio: Muy baja, Baja, Alta");
 
-while (!humedades[humedad.toLowerCase()]) {
+let humedadIndex = humedadesNombres.indexOf(humedad.toLowerCase());
+
+while (humedadIndex === -1) {
 humedad = prompt("Ingresaste un dato inválido. Selecciona la humedad del territorio entre: Muy baja, Baja, Alta");
+humedadIndex = humedadesNombres.indexOf(humedad.toLowerCase());
 }
 
 humedad = humedad.toLowerCase();
@@ -75,7 +74,7 @@ aniosCosecha = parseInt(prompt("¿Por cuántos años dejarás crecer las plantas
 }
 
 //Cálculo final
-let produccionPorHectareaAnual = densidades[densidad] * humedades[humedad];
+let produccionPorHectareaAnual = valorDensidad * humedades[humedadIndex];
 
 function calcularProduccion(produccionPorHectareaAnual, hectareas, aniosCosecha) {
 let produccionTotal = produccionPorHectareaAnual * hectareas * aniosCosecha;

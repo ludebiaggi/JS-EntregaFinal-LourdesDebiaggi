@@ -5,75 +5,82 @@
 
 // Variables iniciales
 let hectareas = parseInt(prompt ("¿Cuántas hectáreas querés cosechar?" ));
-let densidad = prompt("Elige la densidad de plantación: Baja 1100 plantas por hectárea , Alta 2200 plantas por hectárea, Super 3200 plantas por hectárea");
-
 
 // Densidad
+let densidades = {
+baja: 1100,
+alta: 2200,
+super: 3200
+};
 
-while (densidad !== "baja" && densidad !== "Baja" && densidad !== "alta" && densidad !== "Alta" && densidad !== "super" && densidad !== "Super") {
-    let produccionPorHectareaAnual;
-    densidad = prompt("Ingresaste un dato inválido como densidad, indica si es: Baja, Alta o Super");
+let densidad = prompt("Elige la densidad de plantación: Baja, Alta o Super");
+
+while (!densidades[densidad.toLowerCase()]) {
+densidad = prompt("Ingresaste un dato inválido como densidad, indica si es: Baja, Alta o Super");
 }
 
-let produccionPorHectareaAnual;
-if ((densidad === "baja") || (densidad === "Baja")) {
- produccionPorHectareaAnual = 3000;
-} else if ((densidad === "alta") || (densidad === "Alta")) {
-    produccionPorHectareaAnual = 6000;
-} else if ((densidad === "super") || (densidad === "Super")) {
-    produccionPorHectareaAnual = 9000;
-} else {
-    densidad = prompt("Ingresaste un dato inválido como densidad, indica si es: Baja, Alta o Super");  
-}
+densidad = densidad.toLowerCase();
 
+// Métodos de búsqueda para DENSIDAD
+function buscarValorDensidad(densidad) {
+    for (let key in densidades) {
+        if (key === densidad) {
+        return densidades[key];
+        }
+     } 
+    return null;
+    }
+    
+    let valorDensidad = buscarValorDensidad(densidad);
+    if (valorDensidad) {
+    alert("La densidad '" + densidad + "' equivale a: " + valorDensidad + "plantines por hectárea.");
+    } else {
+    alert("La densidad ingresada no se encuentra en la lista");
+    }
 
 // Humedad
+let humedades = {
+"muy baja": 0.4,
+baja: 0.8,
+alta: 1.25
+};
+
 let humedad = prompt("Elige la humedad del territorio: Muy baja, Baja, Alta");
 
-while (humedad !== "muy baja" && humedad !== "Muy baja" && humedad !== "baja" && humedad !== "Baja" && humedad !== "alta" && humedad !== "Alta") {
-    let produccionPorHectareaAnual;
-    humedad = prompt("Ingresaste un dato inválido. Selecciona la humedad del territorio entre: Muy baja, Baja, Alta");
+while (!humedades[humedad.toLowerCase()]) {
+humedad = prompt("Ingresaste un dato inválido. Selecciona la humedad del territorio entre: Muy baja, Baja, Alta");
 }
 
-
-if ((humedad === "muy baja") || (humedad === "Muy baja")) {
-    produccionPorHectareaAnual *= 0.4;
-} else if ((humedad === "baja") || (humedad === "Baja")) {
-    produccionPorHectareaAnual *= 0.8;
-} else if ((humedad === "alta") || (humedad === "Alta")){
-    produccionPorHectareaAnual *= 1.25;
-}  else {
-    humedad = prompt("Ingresaste un dato inválido. Selecciona la humedad del territorio entre: Muy baja, Baja, Alta");
-}
+humedad = humedad.toLowerCase();
 
 //Años cosecha
 let aniosCosecha = parseInt(prompt("¿Por cuantos años dejarás crecer las plantas?"));
 while (aniosCosecha < 5 ) {
-    switch (aniosCosecha){
-        case 1: 
-            alert("Tus plantitas están aún en modo bebé, mínimo necesitás 5 años para que crezcan!");
-            break;
+switch (aniosCosecha){
+    case 1:
+        alert("Tus plantitas están aún en modo bebé, mínimo necesitás 5 años para que crezcan!");
+        break;
+    case 2:
+        alert("En mínimo son 5 años para que las plantas alcancen su madurez");
+        break;
+    case 3: 
+        alert("En mínimo son 5 años para que las plantas alcancen su madurez");
+        break;
+    case 4: 
+        alert("Te falta un año y ya podés cosechar y calcular tu producción!");
+        break;
+}
 
-        case 2:
-            alert("En mínimo son 5 años para que las plantas alcancen su madurez");
-            break;
-
-        case 3: 
-            alert("En mínimo son 5 años para que las plantas alcancen su madurez");
-            break;
-
-        case 4: 
-            alert("Te falta un año y ya podés cosechar y calcular tu producción!");
-            break;
-    }
-
-    aniosCosecha = parseInt(prompt("¿Por cuántos años dejarás crecer las plantas?"));
+aniosCosecha = parseInt(prompt("¿Por cuántos años dejarás crecer las plantas?"));
 }
 
 //Cálculo final
+let produccionPorHectareaAnual = densidades[densidad] * humedades[humedad];
+
 function calcularProduccion(produccionPorHectareaAnual, hectareas, aniosCosecha) {
-    let produccionTotal = produccionPorHectareaAnual * hectareas * aniosCosecha;
-    alert("La producción total de yerba mate será de " + produccionTotal + " kg");
+let produccionTotal = produccionPorHectareaAnual * hectareas * aniosCosecha;
+alert("La producción total de yerba mate será de " + produccionTotal + " kg");
 }
 
 calcularProduccion(produccionPorHectareaAnual, hectareas , aniosCosecha);
+

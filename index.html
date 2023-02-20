@@ -4,29 +4,53 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="Img/Logo_50x50.png">
     <title>Simulador de Producción Yerba Mate</title>
 </head>
 <body>
-    
-    <h1 class="h1simulador">Simulador de Producción de YERBA MATE</h1>
-    <div class="contenedorFormulario">
-        <form>
-            <label for="hectareas">Ingresa la cantidad de hectáreas a cosechar</label>
-            <input type="number" id="hectareas" name="hectareas" placeholder="El mínimo es 1 hectárea">
-    
-            <label for="densidadPlantacion">Elige la densidad de plantación</label>
-            <input type="text" id="densidadPlantacion" name="densidadPlantacion" placeholder="Baja - Alta - Superplantación">
-    
-            <label for="humedad">Selecciona la humedad del territorio</label>
-            <input type="text" id="humedad" name="humedad" placeholder="Muy baja - Baja - Alta">
-    
-            <label for="tiempo">¿Cuantos años vas a dedicarle a la plantación?</label>
-            <input type="number" id="tiempo" name="tiempo" placeholder="El mínimo son 5 años"> 
-    
-            <button type="submit">Calcular</button>
-        </form>
-    </div>
+
+    <body>
+
+        <h1 class="h1simulador">Simulador de Producción de YERBA MATE</h1>
+        <h2 class="h2simulador">By Haus</h2>
+        <video src="video/campo-1.mp4" autoplay="true" muted="true" loop="true"></video>
+        <h3 id="resultado"></h3>
+        <div class="contenedorFormulario">
+            <form>
+                <label for="hectareas">Ingresa la cantidad de hectáreas a cosechar</label>
+                <input type="range" id="hectareas" name="hectareas" min="1" max="10000" step="1">
+                <output id="hectareasOutput"></output>
+            
+                <label for="densidadPlantacion">Elige la densidad de plantación</label>
+                <select id="densidadPlantacion" name="densidadPlantacion">
+                    <option value="Seleccionar">Seleccionar</option>
+                    <option value="baja">Baja (1100 plantines x Ha)</option>
+                    <option value="alta">Alta (2200 plantines x Ha)</option>
+                    <option value="super">Super (3200 plantines x Ha)</option>
+                </select>
+        
+                <label for="humedad">Selecciona la humedad del territorio</label>
+                <select id="humedad" name="humedad">
+                    <option value="Seleccionar">Seleccionar</option>
+                    <option value="muybaja">Muy Baja</option>
+                    <option value="baja">Baja</option>
+                    <option value="alta">Alta</option>
+                </select>
+        
+                <label for="tiempo">¿Cuántos años vas a dedicarle a la plantación?</label>
+                <input type="range" id="tiempo" name="tiempo" min="1" max="50" step="1">
+                <output id="tiempoOutput"></output>  
+        
+                <button type="submit">Calcular</button>
+            </form>
+            
+        </div>
+        
+        
 
     <script src="simulador.js"></script>
 </body>

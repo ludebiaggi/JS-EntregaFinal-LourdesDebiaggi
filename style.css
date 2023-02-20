@@ -4,19 +4,68 @@
     box-sizing: 0;
 }
 
-.h1simulador{
+
+/*Home*/
+.h1simulador {
+    color: whitesmoke;
+    animation: color-change 27s ease infinite;
     text-align: center;
-    color: #4CAF50;
-    margin-top: 1rem;
+    margin-top: 2rem;
     font-size: 2rem;
     font-weight: bolder;
+  }
+  
+  @keyframes color-change {
+    0% {
+      color: whitesmoke;
+    }
+    100% {
+      color: #525752;
+    }
+  }
+
+.h2simulador{
+    color: whitesmoke;
+    animation: color-change 27s ease infinite;
+    text-align: right;
+    margin-right: 25%;
+    font-size: medium;
+    }
+
+    @keyframes color-change {
+        0% {
+          color: whitesmoke;
+        }
+        100% {
+          color: #525752;
+        }
 }
+
+body{
+    font-family: 'Varela Round', sans-serif;
+}
+
+video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 105%;
+    min-height: 100%;
+    transform: translateX(calc((100% - 100vw) / 2));
+    z-index: -2;
+    opacity: 0.8; 
+}
+
+
+/*Estilos del Formulario Interactivo*/
+
 
 .contenedorFormulario {
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
+    font-family: 'Varela Round', sans-serif;
 }
 
 form {
@@ -25,7 +74,7 @@ form {
     width: 300px;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0,0,0,0.1);
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Varela Round', sans-serif;
 }
 
 label {
@@ -56,9 +105,73 @@ button[type="submit"] {
     width: 100%;
     margin-top: 10px;
     font-size: 18px;
+    font-family: 'Varela Round', sans-serif;
     transition: backgroun-color 0.3s ease;
 }
 
 button[type="submit"]:hover {
     background-color: #3e8e41;
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #4e4b4b;
+    width: 100%;
+    height: 2px;
+    padding: 0;
+    margin-bottom: 20px;
+    border-radius: 5px;
+  }
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #4CAF50;
+    cursor: pointer;
+}
+
+output {
+    display: inline-block;
+    color: #4CAF50;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+  
+select {
+    background-color: #eceaca;
+    border: none;
+    padding: 1rem;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    width: 100%;
+    border-radius: 5px;
+    appearance: none;
+    color: #4CAF50;
+    font-weight: bold;
+    font-family: 'Varela Round', sans-serif;
+}
+  
+option {
+    background-color: #F1F8E9;
+    font-size: 1rem;
+    color: #4CAF50;
+    font-weight: bold;
+    text-align: center;
+    font-family: 'Varela Round', sans-serif;
+}
+
+/*Estilo Provisorio Modal*/
+#resultado {
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  font-family: 'Varela Round', sans-serif;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: rgb(235, 69, 69);
+  font-size: smaller;
 }

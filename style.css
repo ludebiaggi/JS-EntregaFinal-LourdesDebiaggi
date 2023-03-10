@@ -113,6 +113,38 @@ button[type="submit"]:hover {
     background-color: #3e8e41;
 }
 
+#buscar-btn {
+  background-color: #4CAF50;
+  color: whitesmoke;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
+  font-size: 18px;
+  font-family: 'Varela Round', sans-serif;
+  transition: backgroun-color 0.3s ease;
+}
+
+#buscar-btn:hover{
+  background-color: #3e8e41;
+}
+
+#mostrarCalculoAnterior{
+  background-color: #4CAF50;
+  color: whitesmoke;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
+  font-size: 18px;
+  font-family: 'Varela Round', sans-serif;
+  transition: backgroun-color 0.3s ease;
+}
+
 input[type="range"] {
     -webkit-appearance: none;
     appearance: none;
@@ -163,7 +195,7 @@ option {
     font-family: 'Varela Round', sans-serif;
 }
 
-/*Estilo Provisorio Modal*/
+/*Estilo Resultado superior*/
 #resultado {
   padding: 10px;
   border-radius: 10px;
@@ -174,4 +206,16 @@ option {
   text-align: center;
   color: rgb(235, 69, 69);
   font-size: smaller;
+}
+
+/*Estilo segundo formulario Tipos de Yerba*/
+#formulario2 {
+  background-color: #E8F5E9;
+  padding: 40px;
+  width: 300px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  font-family: 'Varela Round', sans-serif;
+  align-items: center;
+  margin: 0 auto;
 }

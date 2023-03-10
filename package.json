@@ -1,0 +1,22 @@
+{
+  "name": "pre-entrega3_lourdesdebiaggi-modificado",
+  "version": "1.0.0",
+  "description": "",
+  "main": "simulador.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ludebiaggi/JS-PreEntrega2-LourdesDebiaggi.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ludebiaggi/JS-PreEntrega2-LourdesDebiaggi/issues"
+  },
+  "homepage": "https://github.com/ludebiaggi/JS-PreEntrega2-LourdesDebiaggi#readme",
+  "dependencies": {
+    "sweetalert": "^2.1.2"
+  }
+}

@@ -8,12 +8,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.min.css">
     <link rel="shortcut icon" href="Img/Logo_50x50.png">
     <title>Simulador de Producción Yerba Mate</title>
 </head>
-<body>
 
-    <body>
+<body>
 
         <h1 class="h1simulador">Simulador de Producción de YERBA MATE</h1>
         <h2 class="h2simulador">By Haus</h2>
@@ -46,12 +48,36 @@
                 <output id="tiempoOutput"></output>  
         
                 <button type="submit">Calcular</button>
+                <button id="mostrarCalculoAnterior">Mostrar último cálculo</button>
+
             </form>
             
         </div>
+        <br>
+        <div id="formulario2">
         
-        
+            <h4>¿Querés saber más sobre la Yerba Mate?</h4>
+            <h5>Conocé los distintos tipos y sus características!</h5>
+            <select id="yerba-type">
+            <option value="1">Canchada</option>
+            <option value="2">Primera Molienda</option>
+            <option value="3">Selección especial</option>
+            <option value="4">Orgánica</option>
+            <option value="5">Barbacuá</option>
+            <option value="6">Compuesta</option>
+            <option value="7">Suave</option>
+            <option value="8">Tradicional</option>
+            </select>
+            <button id="buscar-btn">Conocé más!</button>
+ 
+        </div>
+      
+    
+    <footer>
+        <p>Conocenos más <a href="https://ludebiaggi.github.io/PF-LourdesDebiaggi/"  target="_blank">Haciendo click acá</a></p>
+      </footer>
 
     <script src="simulador.js"></script>
+    <script src="simuladorinfo.js"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-// La idea del proyecto está inspirado en mi proyecto de Diseño WEB sobre HAUS-Productores de Yerba Mate. El simulador permitirá calcular la producción estimada de Yerba Mate en función de algunas variables (espacio en hectáreas, tiempo, humedad, etc), la aplicación está destinada a usuarios que quieran incursionar en el negocio, o simplemente que sean curiosos. Al pie del simulador, se encuentra la web de HAUS.
+// La idea del proyecto está inspirado en mi proyecto de Diseño WEB sobre HAUS-Productores de Yerba Mate. El simulador permitirá calcular la producción estimada de Yerba Mate en función de algunas variables (espacio en hectáreas, tiempo, humedad, etc), la aplicación está destinada a usuarios que quieran incursionar en el negocio, o simplemente que sean curiosos.
 
 //Declaración de variables para los elementos DOM utilizados en el script.
 const form = document.querySelector("form");
@@ -10,27 +10,26 @@ const tiempoInput = document.querySelector("#tiempo");
 const tiempoOutput = document.querySelector("#tiempoOutput");
 const resultadoElement = document.querySelector("#resultado");
 
-//Eventos para los campos de entrada HECTÁREAS y TIEMPO en donde el usuario interactúa ingresando un valor.
-hectareasInput.addEventListener("input", function() {
+//Eventos para los campos de entrada HECTÁREAS y TIEMPO.
+hectareasInput.addEventListener("input", function () {
   hectareasOutput.textContent = hectareasInput.value;
 });
 
-tiempoInput.addEventListener("input", function() {
+tiempoInput.addEventListener("input", function () {
   tiempoOutput.textContent = tiempoInput.value;
 });
 
-//Función para detectar si los campos DENSIDAD y HUMEDAD han sido seleccionados correctamente, de no ser así, el modal advierte que debe seleccionarse un valor.
-
+//Función para detectar si los campos DENSIDAD y HUMEDAD han sido seleccionados correctamente, de no ser así, se implementará a futuro un modal con la instrucción para que el usuario pueda corregir el dato ingresado, actualmente como no sabemos usar librerías, se utiliza DOM.
 function validateForm() {
   let isValid = true;
   if (densidadSelect.value === "Seleccionar") {
-    Swal.fire({    //Aplicación de librería SweetAlert, a lo largo del código se ve su uso frecuente.
+    Swal.fire({
       icon: 'error',
       title: 'Apa la lá!',
       text: 'Parece que no seleccionaste una densidad válida'
     });
     isValid = false;
-  } 
+  }
   if (humedadSelect.value === "Seleccionar") {
     Swal.fire({
       icon: 'error',
@@ -47,7 +46,7 @@ function validateForm() {
 
 
 //Evento para cuando se envía el formulario, evita que el mismo se envíe predeterminado y permite que se avance siempre que los campos posean valores admitidos.
-form.addEventListener("submit", function(event) {
+form.addEventListener("submit", function (event) {
   event.preventDefault();
   if (!validateForm()) {
     return;
@@ -62,16 +61,16 @@ form.addEventListener("submit", function(event) {
 
   const densidad = densidadSelect.value.toLowerCase();
   const valorDensidad = densidades[densidad];
-  const humedades = [0.4, 0.8, 1.25]; 
+  const humedades = [0.4, 0.8, 1.25];
   const humedad = humedadSelect.value.toLowerCase();
   const humedadIndex = [
     "muybaja",
     "baja",
     "alta"
   ].indexOf(humedad);
-  
+
   const tiempo = parseInt(tiempoInput.value);
-  if (tiempo < 5) { //Utilización de condicionales
+  if (tiempo < 5) {
     if (tiempo === 1) {
       Swal.fire({
         icon: 'warning',
@@ -93,33 +92,12 @@ form.addEventListener("submit", function(event) {
     }
     return;
   }
-  
+
 
   //Cálculo Resultado
   const resultado = hectareas * valorDensidad * humedades[humedadIndex] * tiempo;
 
-  //Boton Último Resultado (A través del uso del storage, rescatamos el último cálculo generado por el usuario)
-
-  function obtenerUltimoCalculo() {
-    const ultimoCalculo = {
-      hectareas: localStorage.getItem("hectareas"),
-      densidad: localStorage.getItem("densidad"),
-      humedad: localStorage.getItem("humedad"),
-      tiempo: localStorage.getItem("tiempo"),
-      resultado: localStorage.getItem("resultado")
-    };
-    return ultimoCalculo;
-  }
-
-  const mostrarCalculoAnteriorBtn = document.querySelector("#mostrarCalculoAnterior");
-
-  mostrarCalculoAnteriorBtn.addEventListener("click", function() {
-  const ultimoCalculo = obtenerUltimoCalculo();
-  resultadoElement.textContent = `Hectáreas: ${ultimoCalculo.hectareas}, Densidad: ${ultimoCalculo.densidad}, Humedad: ${ultimoCalculo.humedad}, Tiempo: ${ultimoCalculo.tiempo}, Resultado: ${ultimoCalculo.resultado}`;
-  });
-
-
-//Almacenamiento de datos con LocalStorage y JSON.
+  //Almacenamiento de datos con LocalStorage y JSON.
   const resultadoJson = JSON.stringify({
     hectareas,
     densidad,
@@ -140,7 +118,40 @@ form.addEventListener("submit", function(event) {
     toast: true,
     position: 'top-center'
   });
-  
-  
+
 });
 
+  //Boton Último Resultado (A través del uso del storage, rescatamos el último cálculo generado por el usuario)
+
+function obtenerUltimoCalculo() {
+  let resultado = JSON.parse(localStorage.getItem("resultado"));
+  if(resultado != undefined && resultado != null){
+    console.log(resultado)
+    const ultimoCalculo = {
+      hectareas: resultado.hectareas,
+      densidad: resultado.densidad,
+      humedad: resultado.humedad,
+      tiempo: resultado.tiempo,
+      resultado: resultado.resultado
+    };
+    return ultimoCalculo;
+  }
+}
+
+const mostrarCalculoAnteriorBtn = document.querySelector("#mostrarCalculoAnterior");
+
+mostrarCalculoAnteriorBtn.addEventListener("click", function () {
+  const ultimoCalculo = obtenerUltimoCalculo();
+  if(ultimoCalculo == null) {
+    Swal.fire({
+      title: "No existe un cálculo previo",
+      timer: 3000,
+    });
+  } else {
+    Swal.fire({
+      title: "Último cálculo",
+      html: `Hectáreas: ${ultimoCalculo.hectareas}<br>Densidad: ${ultimoCalculo.densidad}<br>Humedad: ${ultimoCalculo.humedad}<br>Años: ${ultimoCalculo.tiempo}<br>Resultado: ${ultimoCalculo.resultado}KG`,
+      icon: "info"
+    });
+  }
+});

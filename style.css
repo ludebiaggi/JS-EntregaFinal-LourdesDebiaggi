@@ -145,6 +145,20 @@ button[type="submit"]:hover {
   transition: backgroun-color 0.3s ease;
 }
 
+#mostrarCalculosAnteriores{
+  background-color: #4CAF50;
+  color: whitesmoke;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
+  font-size: 18px;
+  font-family: 'Varela Round', sans-serif;
+  transition: backgroun-color 0.3s ease;
+}
+
 input[type="range"] {
     -webkit-appearance: none;
     appearance: none;

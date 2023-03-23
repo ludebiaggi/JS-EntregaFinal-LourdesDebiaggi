@@ -10,6 +10,10 @@ const tiempoInput = document.querySelector("#tiempo");
 const tiempoOutput = document.querySelector("#tiempoOutput");
 const resultadoElement = document.querySelector("#resultado");
 
+// Declaración de una lista vacía para almacenar los resultados anteriores (variable global)
+let resultadosAnteriores = [];
+
+
 //Eventos para los campos de entrada HECTÁREAS y TIEMPO.
 hectareasInput.addEventListener("input", function () {
   hectareasOutput.textContent = hectareasInput.value;
@@ -19,7 +23,7 @@ tiempoInput.addEventListener("input", function () {
   tiempoOutput.textContent = tiempoInput.value;
 });
 
-//Función para detectar si los campos DENSIDAD y HUMEDAD han sido seleccionados correctamente, de no ser así, se implementará a futuro un modal con la instrucción para que el usuario pueda corregir el dato ingresado, actualmente como no sabemos usar librerías, se utiliza DOM.
+//Función para detectar si los campos DENSIDAD y HUMEDAD han sido seleccionados correctamente.
 function validateForm() {
   let isValid = true;
   if (densidadSelect.value === "Seleccionar") {
@@ -106,7 +110,9 @@ form.addEventListener("submit", function (event) {
     resultado
   });
 
-  localStorage.setItem("resultado", resultadoJson);
+  resultadosAnteriores.push(JSON.parse(resultadoJson));
+localStorage.setItem("resultadosAnteriores", JSON.stringify(resultadosAnteriores));
+
 
   Swal.fire({
     title: 'Producción de Yerba Mate',
@@ -121,37 +127,24 @@ form.addEventListener("submit", function (event) {
 
 });
 
-  //Boton Último Resultado (A través del uso del storage, rescatamos el último cálculo generado por el usuario)
+//Evento para mostrar todos los resultados anteriores al hacer clic en el botón "Ver Cálculos anteriores"
+document.querySelector("#mostrarCalculosAnteriores").addEventListener("click", function () {
+  resultadosAnteriores = JSON.parse(localStorage.getItem("resultadosAnteriores")) || [];
 
-function obtenerUltimoCalculo() {
-  let resultado = JSON.parse(localStorage.getItem("resultado"));
-  if(resultado != undefined && resultado != null){
-    console.log(resultado)
-    const ultimoCalculo = {
-      hectareas: resultado.hectareas,
-      densidad: resultado.densidad,
-      humedad: resultado.humedad,
-      tiempo: resultado.tiempo,
-      resultado: resultado.resultado
-    };
-    return ultimoCalculo;
-  }
-}
-
-const mostrarCalculoAnteriorBtn = document.querySelector("#mostrarCalculoAnterior");
-
-mostrarCalculoAnteriorBtn.addEventListener("click", function () {
-  const ultimoCalculo = obtenerUltimoCalculo();
-  if(ultimoCalculo == null) {
-    Swal.fire({
-      title: "No existe un cálculo previo",
-      timer: 3000,
-    });
-  } else {
-    Swal.fire({
-      title: "Último cálculo",
-      html: `Hectáreas: ${ultimoCalculo.hectareas}<br>Densidad: ${ultimoCalculo.densidad}<br>Humedad: ${ultimoCalculo.humedad}<br>Años: ${ultimoCalculo.tiempo}<br>Resultado: ${ultimoCalculo.resultado}KG`,
-      icon: "info"
-    });
-  }
+  let html = "<table><tr><th>Hectáreas</th><th>Densidad</th><th>Humedad</th><th>Tiempo</th><th>Resultado</th></tr>";
+  
+  //Recorre todos los resultados anteriores almacenados en la lista resultadosAnteriores
+  resultadosAnteriores.forEach(function (resultado) {
+    html += `<tr><td>${resultado.hectareas}</td><td>${resultado.densidad}</td><td>${resultado.humedad}</td><td>${resultado.tiempo}</td><td>${resultado.resultado}</td></tr>`;
+     });
+  
+  html += "</table>";
+  
+  Swal.fire({
+    title: 'Historial de cálculos',
+    html: html,
+    icon: 'info'
+  });
 });
+
+
